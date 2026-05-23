@@ -1,15 +1,12 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { Check, ArrowRight, Play, Award, Zap, Heart } from "lucide-react";
 import { motion } from "framer-motion";
 import { COMPANY, SERVICES, BENEFITS } from "@/lib/data";
 import { IMAGES } from "@/lib/images";
 import ServiceCard from "@/components/ServiceCard";
-import Modal from "@/components/Modal";
 import TestimonialCarousel from "@/components/TestimonialCarousel";
-import Image from "next/image";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -26,7 +23,7 @@ const itemVariants = {
 
 export default function Home() {
   return (
-    <main className="bg-white">
+    <div className="bg-white">
       {/* HERO SECTION */}
       <section className="relative h-screen min-h-[750px] flex items-center overflow-hidden bg-primary">
         <motion.div 
@@ -93,6 +90,7 @@ export default function Home() {
         </motion.div>
       </section>
 
+      {/* BRAND STORY */}
       <section className="section-padding bg-bg-warm overflow-hidden">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
@@ -104,7 +102,7 @@ export default function Home() {
                 transition={{ duration: 1 }}
                 className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl aspect-[16/10]"
               >
-                <Image src={IMAGES.about.history} alt="Storia" fill className="object-cover" />
+                <img src={IMAGES.about.history} alt="Storia" className="w-full h-full object-cover" />
                 <div className="absolute inset-0 bg-primary/10" />
               </motion.div>
               
@@ -140,22 +138,42 @@ export default function Home() {
         </div>
       </section>
 
+      {/* SERVICES */}
       <section className="section-padding bg-white relative">
+        <div className="absolute top-0 left-0 w-full overflow-hidden pointer-events-none opacity-[0.03] select-none">
+          <span className="text-[20vw] font-black uppercase leading-none whitespace-nowrap -ml-20">Artigianato</span>
+        </div>
+
         <div className="container relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-24">
             <div className="max-w-[700px] space-y-6">
-              <span className="text-secondary text-xs font-bold uppercase tracking-[0.3em] block">Eccellenza</span>
-              <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.95]">I Nostri Servizi.</h2>
+              <span className="text-secondary text-xs font-bold uppercase tracking-[0.3em] block">Eccellenza Operativa</span>
+              <h2 className="text-5xl md:text-7xl font-black tracking-tighter leading-[0.95]">
+                Soluzioni su misura <br />
+                <span className="serif italic font-normal text-primary">per ogni cantiere.</span>
+              </h2>
             </div>
+            <Link 
+              href="/servizi" 
+              className="px-8 py-4 rounded-full border-2 border-primary text-primary text-xs font-black uppercase tracking-widest hover:bg-primary hover:text-white transition-all"
+            >
+              Tutti i servizi
+            </Link>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-20">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-20 md:pb-24">
             {SERVICES.map((service, i) => (
-              <ServiceCard key={service.id} service={service} index={i} />
+              <ServiceCard 
+                key={service.id} 
+                service={service} 
+                index={i} 
+              />
             ))}
           </div>
         </div>
       </section>
 
+      {/* PARALLAX QUOTE */}
       <section className="relative py-48 lg:py-64 flex items-center justify-center overflow-hidden bg-primary">
         <motion.div 
           initial={{ y: "-10%" }}
@@ -165,6 +183,7 @@ export default function Home() {
           style={{ backgroundImage: `url(${IMAGES.testimonial.bg})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-primary via-transparent to-primary" />
+        
         <div className="container relative z-10 text-center">
           <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="max-w-[1000px] mx-auto space-y-12">
             <div className="w-24 h-[2px] bg-secondary mx-auto" />
@@ -179,13 +198,14 @@ export default function Home() {
         </div>
       </section>
 
+      {/* INNOVATIVE MATERIALS */}
       <section className="section-padding bg-bg-warm">
         <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-2 bg-white rounded-[3rem] overflow-hidden shadow-2xl border border-primary/5">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="p-12 lg:p-24 space-y-10">
               <div className="flex items-center gap-6">
-                <div className="w-20 h-20 rounded-2xl bg-bg-warm p-4 flex items-center justify-center relative overflow-hidden">
-                  <Image src={IMAGES.materials.izonil} alt="Izonil" width={80} height={80} className="object-contain" />
+                <div className="w-20 h-20 rounded-2xl bg-bg-warm p-4 flex items-center justify-center">
+                  <img src={IMAGES.materials.izonil} alt="Izonil" className="w-full h-auto" />
                 </div>
                 <h3 className="text-4xl font-black italic serif text-primary">IZONIL&reg;</h3>
               </div>
@@ -222,6 +242,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* BENEFITS */}
       <section className="section-padding bg-white relative">
         <div className="container">
           <div className="text-center max-w-[800px] mx-auto mb-24 space-y-6">
@@ -244,6 +265,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TESTIMONIALS */}
       <section className="section-padding bg-bg-warm">
         <div className="container">
           <div className="text-center mb-24 space-y-6">
@@ -254,6 +276,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* FINAL CTA */}
       <section className="relative py-32 lg:py-48 overflow-hidden bg-primary">
         <motion.div 
           initial={{ scale: 1.2 }}
@@ -284,52 +307,6 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
-
-      <Modal isOpen={!!selectedService} onClose={() => setSelectedService(null)}>
-        {selectedService && (
-          <div className="flex flex-col lg:flex-row h-full">
-            <div className="lg:w-[45%] h-[350px] lg:h-auto relative">
-              <Image src={selectedService.image} alt={selectedService.title} fill className="object-cover" />
-              <div className="absolute inset-0 bg-primary/20" />
-              <div className="absolute bottom-10 left-10 p-8 bg-white/90 backdrop-blur-md rounded-2xl shadow-xl max-w-[250px] hidden md:block">
-                <span className="text-secondary text-[10px] font-black uppercase tracking-[0.3em] block mb-2">Servizio 0{SERVICES.indexOf(selectedService) + 1}</span>
-                <p className="text-text-dark font-black italic serif text-lg">{selectedService.title}</p>
-              </div>
-            </div>
-            <div className="lg:w-[55%] p-10 lg:p-20 space-y-10 overflow-y-auto">
-              <div className="space-y-6">
-                <span className="text-secondary text-xs font-bold uppercase tracking-[0.3em] block">Scheda Tecnica</span>
-                <h2 className="text-4xl md:text-5xl font-black tracking-tighter leading-tight italic serif text-primary">{selectedService.title}</h2>
-              </div>
-              <p className="text-xl text-text-muted leading-relaxed font-medium">{selectedService.fullDesc}</p>
-              <div className="space-y-6 pt-6">
-                <h4 className="text-sm font-black uppercase tracking-[0.2em] text-primary flex items-center gap-3">
-                  <div className="w-8 h-[1px] bg-secondary" />
-                  Dettagli
-                </h4>
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {selectedService.details.map((detail: string, i: number) => (
-                    <li key={i} className="flex gap-4 items-start group">
-                      <div className="w-6 h-6 rounded-full bg-bg-warm flex items-center justify-center text-secondary group-hover:bg-secondary group-hover:text-white transition-colors flex-shrink-0 mt-1">
-                        <Check size={14} />
-                      </div>
-                      <span className="text-base text-text-body font-medium">{detail}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="pt-12 border-t border-bg-warm flex flex-col sm:flex-row items-center gap-8">
-                <Link href="/contatti" className="bg-primary text-white px-10 py-5 text-[11px] font-black uppercase tracking-[0.2em] rounded-full hover:bg-secondary transition-all shadow-lg active:scale-95">
-                  Contattaci
-                </Link>
-                <a href={`tel:${COMPANY.phone}`} className="text-primary font-black uppercase tracking-widest text-xs hover:text-secondary transition-colors">
-                  {COMPANY.phone}
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-      </Modal>
     </div>
   );
 }
