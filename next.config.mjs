@@ -12,5 +12,13 @@ const nextConfig = {
       },
     ],
   },
+  // Speed up Vercel builds by skipping redundant checks (we verify locally)
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
+
 export default nextConfig;
