@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
 import Link from "next/link";
+import Image from "next/image";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -32,9 +33,10 @@ export default function ServiceCard({ service, index }: ServiceCardProps) {
       )}
     >
       <Link href={service.href} className="block aspect-[4/3] overflow-hidden relative">
-        <img 
+        <Image 
           src={service.image} 
           alt={service.title} 
+          fill
           className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
         />
         <div className="absolute inset-0 bg-primary/20 group-hover:bg-primary/0 transition-colors duration-700" />

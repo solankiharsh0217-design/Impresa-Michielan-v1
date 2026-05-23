@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Facebook, Instagram, Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 import { COMPANY, SERVICES, NAV_ITEMS } from "@/lib/data";
 import { IMAGES } from "@/lib/images";
+import Image from "next/image";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -17,7 +18,9 @@ export default function Footer() {
           {/* Brand Col */}
           <div className="lg:col-span-4 space-y-8">
             <Link href="/" className="flex items-center gap-4 group">
-              <img src={IMAGES.logo} alt={COMPANY.name} className="h-12 w-auto brightness-0 invert transition-transform duration-500 group-hover:scale-110" />
+              <div className="relative w-12 h-12 transition-transform duration-500 group-hover:scale-110">
+                <Image src={IMAGES.logo} alt={COMPANY.name} fill className="object-contain brightness-0 invert" />
+              </div>
               <div>
                 <span className="block text-[10px] font-bold uppercase tracking-[0.3em] leading-none text-white/50 mb-1">
                   Impresa Edile

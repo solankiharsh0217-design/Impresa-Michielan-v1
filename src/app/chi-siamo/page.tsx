@@ -5,6 +5,7 @@ import { IMAGES } from "@/lib/images";
 import { ShieldCheck, Users, History, Heart } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
@@ -62,8 +63,8 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 className="inline-flex items-center gap-8 p-8 bg-white rounded-[2.5rem] shadow-xl border border-primary/5 group"
               >
-                <div className="w-20 h-20 rounded-2xl bg-bg-warm flex items-center justify-center p-3 flex-shrink-0 transition-transform duration-500 group-hover:scale-110">
-                  <img src={IMAGES.about.soa} alt="SOA23" className="w-full h-auto" />
+                <div className="w-20 h-20 rounded-2xl bg-bg-warm flex items-center justify-center p-3 flex-shrink-0 transition-transform duration-500 group-hover:scale-110 relative overflow-hidden">
+                  <Image src={IMAGES.about.soa} alt="SOA23" width={60} height={60} className="object-contain" />
                 </div>
                 <div>
                   <h4 className="text-2xl font-black italic serif text-primary">Certificazione SOA23</h4>
@@ -79,7 +80,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 className="rounded-[3rem] overflow-hidden shadow-2xl aspect-[4/5] relative"
               >
-                <img src={IMAGES.about.workshop} alt="Workshop Michielan" className="w-full h-full object-cover" />
+                <Image src={IMAGES.about.workshop} alt="Workshop Michielan" fill className="object-cover transition-all duration-700 group-hover:scale-105" />
                 <div className="absolute inset-0 bg-primary/10 group-hover:bg-transparent transition-all" />
               </motion.div>
               {/* Decorative element */}

@@ -5,6 +5,7 @@ import { IMAGES } from "@/lib/images";
 import { Check, ArrowRight, ShieldCheck, MapPin, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function ServiceDetailPage({ params }: { params: { serviceId: string } }) {
   const service = SERVICES.find(s => s.id === params.serviceId);

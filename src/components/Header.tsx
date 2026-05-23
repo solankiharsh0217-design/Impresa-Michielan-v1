@@ -9,6 +9,7 @@ import { COMPANY, NAV_ITEMS, SERVICES } from "@/lib/data";
 import { IMAGES } from "@/lib/images";
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import Image from "next/image";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -44,16 +45,22 @@ export default function Header() {
     >
       <div className="container flex justify-between items-center">
         <Link href="/" className="flex items-center gap-3 group">
-          <motion.img 
+          <motion.div 
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            src={IMAGES.logo} 
-            alt={COMPANY.name} 
             className={cn(
-              "h-10 w-auto transition-all duration-500",
-              !isScrolled && "scale-110 h-12"
-            )} 
-          />
+              "relative transition-all duration-500",
+              isScrolled ? "h-10 w-32" : "h-12 w-40"
+            )}
+          >
+            <Image 
+              src={IMAGES.logo} 
+              alt={COMPANY.name} 
+              fill
+              className="object-contain"
+              priority
+            />
+          </motion.div>
         </Link>
 
         {/* Desktop Nav */}

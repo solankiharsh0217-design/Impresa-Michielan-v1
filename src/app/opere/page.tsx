@@ -5,6 +5,7 @@ import { IMAGES, GalleryItem } from "@/lib/images";
 import { X, Maximize2, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null);
@@ -47,14 +48,18 @@ export default function GalleryPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="relative group cursor-pointer overflow-hidden rounded-[2.5rem] shadow-lg hover:shadow-2xl transition-all duration-700 break-inside-avoid bg-white border border-primary/5"
+                className="relative group cursor-pointer overflow-hidden rounded-[2.5rem] shadow-lg hover:shadow-2xl transition-all duration-700 break-inside-avoid bg-white border border-primary/5 min-h-[300px]"
                 onClick={() => setSelectedImage(item)}
               >
-                <img 
-                  src={item.src} 
-                  alt={item.title} 
-                  className="w-full h-auto object-cover transition-transform duration-[1.5s] group-hover:scale-110" 
-                />
+                <div className="relative w-full h-full">
+                  <Image 
+                    src={item.src} 
+                    alt={item.title} 
+                    width={800}
+                    height={600}
+                    className="w-full h-auto object-cover transition-transform duration-[1.5s] group-hover:scale-110" 
+                  />
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/90 via-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-10">
                   <span className="text-secondary text-[10px] font-black uppercase tracking-[0.3em] mb-3 block transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">{item.category}</span>
                   <h3 className="text-white text-2xl font-black italic serif transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">{item.title}</h3>
@@ -92,10 +97,12 @@ export default function GalleryPage() {
               className="max-w-6xl w-full space-y-10 relative" 
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-primary/20 aspect-video md:aspect-auto">
-                <img 
+              <div className="relative rounded-[3rem] overflow-hidden shadow-2xl bg-primary/20 aspect-video md:aspect-auto flex justify-center items-center">
+                <Image 
                   src={selectedImage.src} 
                   alt={selectedImage.title} 
+                  width={1920}
+                  height={1080}
                   className="w-full h-full max-h-[75vh] object-contain" 
                 />
               </div>

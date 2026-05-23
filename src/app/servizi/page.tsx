@@ -4,7 +4,7 @@ import { SERVICES } from "@/lib/data";
 import { IMAGES } from "@/lib/images";
 import ServiceCard from "@/components/ServiceCard";
 import { motion } from "framer-motion";
-import Link from "next/link";
+import Image from "next/image";
 
 export default function ServicesPage() {
   return (
@@ -65,7 +65,7 @@ export default function ServicesPage() {
                 viewport={{ once: true }}
                 className="rounded-[3rem] overflow-hidden shadow-2xl aspect-square relative"
               >
-                <img src={IMAGES.hero.opere} alt="Qualità Michielan" className="w-full h-full object-cover" />
+                <Image src={IMAGES.hero.opere} alt="Qualità Michielan" fill className="object-cover" />
                 <div className="absolute inset-0 bg-primary/20" />
               </motion.div>
             </div>
@@ -131,9 +131,9 @@ export default function ServicesPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.5 }}
-                className="rounded-[3rem] overflow-hidden shadow-2xl aspect-[16/11]"
+                className="rounded-[3rem] overflow-hidden shadow-2xl aspect-[16/11] relative"
               >
-                <img src={IMAGES.hero.opere} alt="Materiali Innovativi" className="w-full h-full object-cover" />
+                <Image src={IMAGES.hero.opere} alt="Materiali Innovativi" fill className="object-cover" />
               </motion.div>
             </div>
           </div>
